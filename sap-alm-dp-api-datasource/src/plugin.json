@@ -1,0 +1,53 @@
+{
+  "type": "datasource",
+  "name": "SAP ALM DP API",
+  "id": "sap-alm-dp-api-datasource",
+  "metrics": true,
+  "info": {
+    "description": "SAP ALM DP API Datasource",
+    "author": {
+      "name": "SAP",
+      "url": "www.sap.com"
+    },
+    "keywords": [
+      "SAP",
+      "FRUN",
+      "CALM",
+      "DP API"
+    ],
+    "logos": {
+      "small": "img/logo.svg",
+      "large": "img/logo.svg"
+    },
+    "links": [
+      {
+        "name": "Website",
+        "url": "https://github.com/SAP/alm-plug-in-for-grafana"
+      },
+      {
+        "name": "License",
+        "url": "https://github.com/SAP/alm-plug-in-for-grafana/blob/master/LICENSE"
+      }
+    ],
+    "screenshots": [],
+    "version": "%VERSION%",
+    "updated": "%TODAY%"
+  },
+  "dependencies": {
+    "grafanaVersion": "6.5.x",
+    "plugins": []
+  },
+  "routes": [
+    {
+      "path": "calm/analytics",
+      "tokenAuth": {
+        "url": "https://calm-dev-eu10-expfeatures-stabledata.authentication.eu10.hana.ondemand.com/oauth/token",
+        "params": {
+          "grant_type": "client_credentials",
+          "client_id": "sb-sapcloudalm!b45600|sapcloudalm!b16907",
+          "client_secret": "WzCeLY9P8RIAk97IS5kqFQ8nyVA="
+        }
+      }
+    }
+  ]
+}
