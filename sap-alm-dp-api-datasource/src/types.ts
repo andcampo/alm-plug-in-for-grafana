@@ -12,13 +12,13 @@ export interface QueryDrilldownMeasure {
 }
 
 export interface QueryDrilldown {
-  dimensions: SelectableValue<string>[];
+  dimensions: Array<SelectableValue<string>>;
   measures: QueryDrilldownMeasure[];
 }
 
 export interface DataProviderFilter {
   key: SelectableValue<string>;
-  values: SelectableValue<string>[];
+  values: Array<SelectableValue<string>>;
   keySelected: boolean;
   valuesSelected: boolean;
 }
@@ -31,16 +31,19 @@ export interface MyQuery extends DataQuery {
   dataProviderFilters: DataProviderFilter[];
   resolution?: ConfigQueryResolution;
   drilldown: QueryDrilldown;
+  ignoreSemanticPeriod?: boolean;
+  completeTimeSeriesWZero?: boolean;
 }
 
 export interface MyVariableQuery {
+  dpASKey: string | null | undefined;
   dataProvider: SelectableValue<string>;
   type: SelectableValue<string>;
   value: SelectableValue<string>;
 }
 
 export const defaultQuery: Partial<MyQuery> = {
-  name: "",
+  name: '',
   type: Format.Timeseries,
   isConfig: false,
   dataProvider: {},
@@ -51,8 +54,10 @@ export const defaultQuery: Partial<MyQuery> = {
   },
   drilldown: {
     measures: [],
-    dimensions: []
+    dimensions: [],
   },
+  ignoreSemanticPeriod: false,
+  completeTimeSeriesWZero: false,
 };
 
 /**
@@ -69,7 +74,7 @@ export interface MyDataSourceOptions extends DataSourceJsonData {
   oauthPassThru?: boolean;
   isFRUN?: boolean;
   alias?: string;
-  dataProviderConfigs?: {[key: string]: DataProviderConfig};
+  dataProviderConfigs?: { [key: string]: DataProviderConfig };
 }
 
 export interface TextValuePair {
@@ -87,7 +92,7 @@ export interface DPResponse {
   description: string;
   service: string;
   domain: string;
-  version: Array<string>;
+  version: string[];
   plan: string;
   calmMarket: string;
 }
